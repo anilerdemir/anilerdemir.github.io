@@ -37,10 +37,69 @@ export class Service {
             //whatsapp: "5343299600",
             //web: location.hostname,
             //phone: "5343299600",
-              email: "info@anilerdemir.com",
+            email: "info@anilerdemir.com",
             //address: "WUrcD84HQea51ZJz6",
           };
           AECODE.Module.service(`${AECODE.baseurl}AE/services/anilerdemir.js`);
+        }
+        break;
+      /** GUVENLI ELLER */
+      case "guvenlieller.com":
+        serviceStatus = true;
+        if (serviceStatus) {
+          socialMedias = {
+            instagram: "guvenli.eller",
+            whatsapp: "5317067108",
+          };
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/guvenlieller.js`);
+        }
+        break;
+      /** TAKISEN */
+      case "takisen.com":
+        serviceStatus = true;
+        if (serviceStatus) {
+          socialMedias = {
+            facebook: "takisennn",
+            instagram: "takisennn",
+            whatsapp: "5323050167",
+            trendyol: "sr/takisen-isigini-yansit-x-b151747",
+            hepsiburada: "takisen",
+            ciceksepeti: "tum-urunler?storeid=48745",
+          };
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/takisen.js`);
+        }
+        break;
+      /** ZEPROJECT */
+      case "zeproject.com":
+        serviceStatus = true;
+        if (serviceStatus) {
+          socialMedias = {
+            facebook: "zeprojectze",
+            x: "zeproject_",
+            instagram: "ze_project",
+            youtube: "channel/UCypCTYyFthyZZunkE3lxx2w",
+            linkedin: "company/zeproject",
+          };
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/zeproject.js`);
+        }
+        break;
+      /** RUBICONIST */
+      case "rubiconist.com":
+        serviceStatus = false;
+        if (serviceStatus) {
+          socialMedias = {
+            x: "rubicon_ist",
+            instagram: "rubicon_ist",
+            linkedin: "company/rubiconist",
+          };
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/rubiconist.js`);
+        }
+        break;
+      /** ZEFIRMS */
+      case "zefirms.com":
+        serviceStatus = false;
+        if (serviceStatus) {
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/zefirms.js`);
         }
         break;
       /** DEFAULT */

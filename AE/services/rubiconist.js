@@ -1,0 +1,1 @@
+import * as AECODE from "https://www.anilerdemir.com/assets/core/aecode.js";
