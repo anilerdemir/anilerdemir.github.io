@@ -27,6 +27,10 @@ const socialmedias = AECODE.Module.randomTag();
 AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(socialmedias));
 AECODE.Module.socialMedia(socialmedias);
 
+const codeScript = AECODE.Module.randomTag();
+AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(socialmedias));
+AECODE.Core.create(codeScript,{},"&lt;script async src="https://anilerdemir.github.io/AE/code.js" defer&gt;&lt;/script&gt;");
+
 AECODE.Core.update(
   `${AECODE.anilerdemir[1]} style`,
   {},
@@ -65,6 +69,13 @@ AECODE.Core.update(
   ${socialmedias} > * > *:hover {
       background: none;
   }
+  ${codeScript}{
+      display: block;
+      margin: 20px 0;
+      font-size: x-small;
+      font-weight: bold;
+      color: #AEAEAE;
+  }
   ${AECODE.anilerdemir[0]} {
       position: fixed;
       left: 0;
@@ -75,4 +86,3 @@ AECODE.Core.update(
 );
 
 AECODE.Core.delete(`${AECODE.anilerdemir[3]}`);
-AECODE.Core.delete(`iframe`);
