@@ -29,7 +29,7 @@ AECODE.Module.socialMedia(socialmedias);
 
 const codeScript = AECODE.Module.randomTag();
 AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(socialmedias));
-AECODE.Core.create(codeScript,{},"&lt;script async src="https://anilerdemir.github.io/AE/code.js" defer&gt;&lt;/script&gt;");
+AECODE.Core.create(codeScript,{},'&lt;script async src="https://anilerdemir.github.io/AE/code.js" defer&gt;&lt;/script&gt;');
 
 AECODE.Core.update(
   `${AECODE.anilerdemir[1]} style`,
