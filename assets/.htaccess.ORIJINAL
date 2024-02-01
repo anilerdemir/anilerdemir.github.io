@@ -1,0 +1,60 @@
+RewriteOptions inherit
+
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^anilerdemir\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.anilerdemir\.com$
+RewriteRule ^(.*)$ "https\:\/\/www\.anilerdemir\.com\/$1" [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^(.*)$ "https\:\/\/www\.anilerdemir\.com\/$1" [R=301,L]
+
+RewriteCond %{HTTP_REFERER} !^http://94.73.151.149/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://94.73.151.149$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://anilerdemir.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://anilerdemir.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.anilerdemir.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.anilerdemir.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://anilerdemir.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://anilerdemir.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://takisen.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://takisen.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://takisen.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://takisen.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.takisen.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.takisen.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.takisen.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.takisen.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.anilerdemir.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.anilerdemir.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.zeproject.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.zeproject.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.zeproject.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.zeproject.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://zeproject.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://zeproject.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://zeproject.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://zeproject.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.zefirms.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.zefirms.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.zefirms.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.zefirms.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://zefirms.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://zefirms.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://zefirms.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://zefirms.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.guvenlieller.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.guvenlieller.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.guvenlieller.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.guvenlieller.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://guvenlieller.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://guvenlieller.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://guvenlieller.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://guvenlieller.com$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ https://www.anilerdemir.com [R,NC]
+
+<IfModule mod_headers.c>
+    SetEnvIf Origin "http(s)?://(www\.)?(anilerdemir\.com|takisen\.com|guvenlieller\.com|zeproject\.com|zefirms\.com|94.73.151.149/~u9526724|94.73.151.149)$" ACAO=$0
+    Header set Access-Control-Allow-Origin %{ACAO}e env=ACAO
+</IfModule>

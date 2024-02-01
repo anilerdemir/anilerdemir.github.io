@@ -1,0 +1,17 @@
+{
+  "name": "aecode",
+  "version": "1.0.0",
+  "description": "ANIL ERDEMIR - www.anilerdemir.com",
+  "main": "https://anilerdemir.github.io/assets/core/aecode.js",
+  "scripts": {
+    "test": "AECODE : Connected!"
+  },
+  "homepage": "https://anilerdemir.github.io/",
+  "keywords": [
+    "anilerdemir",
+    "aecode",
+    "ae"
+  ],
+  "author": "ANIL ERDEMİR",
+  "license": "MIT"
+}
