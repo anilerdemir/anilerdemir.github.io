@@ -2,6 +2,7 @@ import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
 document.addEventListener("selectstart", (e) => {
   e.preventDefault();
 });
+
 const elements = [
   "BİLİŞİM TEKNOLOJİLERİ UZMANI",
   "YAZILIM GELİŞTİRİCİ",
@@ -15,7 +16,9 @@ const elements = [
   "TEKNİK DANIŞMAN",
   "FREELANCER",
 ];
+
 AECODE.Module.bootstrap();
+
 AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.ANILERDEMIR.logo(), "pre");
 AECODE.Module.secretMenu("cv", `${AECODE.baseurl}anilerdemir-cv.pdf`);
 
@@ -26,9 +29,6 @@ AECODE.Effect.code(codeTitles, elements);
 const socialmedias = AECODE.Module.randomTag();
 AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(socialmedias));
 AECODE.Module.socialMedia(socialmedias);
-
-const codeScript = AECODE.Module.randomTag();
-AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(codeScript, {}, `&lt;script async src="https://anilerdemir.github.io/AE/code.js" defer&gt;&lt;/script&gt;`));
 
 AECODE.Core.update(
   `${AECODE.anilerdemir[1]} style`,
@@ -67,13 +67,6 @@ AECODE.Core.update(
   }
   ${socialmedias} > * > *:hover {
       background: none;
-  }
-  ${codeScript} {
-    display: block;
-    margin: 20px 0;
-    font-size: x-small;
-    font-weight: bold;
-    color: #AEAEAE;
   }
   ${AECODE.anilerdemir[0]} {
       position: fixed;
