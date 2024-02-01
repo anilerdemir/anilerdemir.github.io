@@ -1,4 +1,4 @@
-import * as AECODE from "https://www.anilerdemir.com/assets/core/aecode.js";
+import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
 
 AECODE.Core.insert(
   "head",
@@ -119,7 +119,7 @@ AECODE.Core.update(
         mix-blend-mode: multiply;
     }
     .slides li {
-        /* background: url("https://www.anilerdemir.com/AE/images/takisen/takisen-isigini-yansit.png") no-repeat !important; */
+        /* background: url("${AECODE.baseurl}AE/images/takisen/takisen-isigini-yansit.png") no-repeat !important; */
         background-position: 2% top !important;
         background-size: 10% !important;
     }

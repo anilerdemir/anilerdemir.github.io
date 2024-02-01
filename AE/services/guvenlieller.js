@@ -1,4 +1,4 @@
-import * as AECODE from "https://www.anilerdemir.com/assets/core/aecode.js";
+import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
 AECODE.Module.socialMedia(".wa__popup_heading");
 
 const evdeSaglikBalonu = AECODE.Module.randomTag();
