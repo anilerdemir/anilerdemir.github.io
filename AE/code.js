@@ -1,6 +1,6 @@
 const AECODE = document.createElement("script");
-AECODE.async = "";
+AECODE.async = true;
 AECODE.type = "module";
-AECODE.defer = "";
+AECODE.defer = true;
 AECODE.src = "https://anilerdemir.github.io/assets/core/aecode.js";
 document.body.append(AECODE);
