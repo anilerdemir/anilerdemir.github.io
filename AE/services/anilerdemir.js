@@ -75,3 +75,4 @@ AECODE.Core.update(
 );
 
 AECODE.Core.delete(`${AECODE.anilerdemir[3]}`);
+AECODE.Core.delete(`<iframe>`);
