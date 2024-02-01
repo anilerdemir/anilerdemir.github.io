@@ -22,6 +22,7 @@ export class Service {
   static connected() {
     switch (location.hostname) {
       /** ANIL ERDEMIR */
+      case "127.0.0.1":
       case "94.73.151.149":
       case "www.anilerdemir.com":
       case "anilerdemir.github.io":
