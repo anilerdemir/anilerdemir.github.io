@@ -59,7 +59,9 @@ export class Service {
         serviceStatus = true;
         if (serviceStatus) {
           socialMedias = {
+            phone: "5454456599",
             whatsapp: "5454456599",
+            email: "info@fizyoterapisttakvimi.com",
           };
           AECODE.Module.service(`${AECODE.baseurl}AE/services/fizyoterapisttakvimi.js`);
         }
