@@ -7,6 +7,6 @@ AECODE.Core.insert(
   );
 AECODE.Module.socialMedia(socialMedias);*/
 
-const socialmedias = AECODE.Module.randomTag();
+const socialmedias = "testSocial";
 AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(socialmedias));
 AECODE.Module.socialMedia(socialmedias);
