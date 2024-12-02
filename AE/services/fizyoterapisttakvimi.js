@@ -1,8 +1,8 @@
 import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
-
+AECODE.message("TEST KOD");
 const socialMedias = AECODE.Module.randomTag();
 AECODE.message(socialMedias);
-AECODE.Core.insert(".zn_text_box .eluid872b040d .hidden-zn_dummy_value .hidden-zn_dummy_value .hidden-zn_dummy_value .hidden-zn_dummy_value  .zn_text_box-light .element-scheme--light", AECODE.Core.create(socialMedias));
+AECODE.Core.insert("#eluidd54dd61b", AECODE.Core.create(socialMedias));
 AECODE.Module.socialMedia(socialMedias);
 
 AECODE.Core.update(
