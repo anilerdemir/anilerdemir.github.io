@@ -26,7 +26,7 @@ export class Service {
       case "www.anilerdemir.com":
       case "anilerdemir.github.io":
         serviceStatus = true;
-        if (serviceStatus) {
+        /*if (serviceStatus) {
           socialMedias = {
             //facebook: "anil.erdemir",
             //x: "Anil_Erdemir",
@@ -41,6 +41,14 @@ export class Service {
             //address: "WUrcD84HQea51ZJz6",
           };
           AECODE.Module.service(`${AECODE.baseurl}AE/services/anilerdemir.js`);
+        }*/
+        if (serviceStatus) {
+          socialMedias = {
+            whatsapp: "5454456599",
+            phone: "5454456599",
+            email: "info@fizyoterapisttakvimi.com",
+          };
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/fizyoterapisttakvimi.js`);
         }
         break;
       /** GUVENLI ELLER */
