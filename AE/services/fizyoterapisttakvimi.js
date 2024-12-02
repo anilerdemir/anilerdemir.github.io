@@ -1,6 +1,7 @@
 import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
 
 const socialmedias = AECODE.Module.randomTag();
+AECODE.message(socialmedias);
 AECODE.Core.insert(".zn_text_box .eluid872b040d .hidden-zn_dummy_value .hidden-zn_dummy_value .hidden-zn_dummy_value .hidden-zn_dummy_value  .zn_text_box-light .element-scheme--light", AECODE.Core.create(socialmedias));
 AECODE.Module.socialMedia(socialmedias);
 
