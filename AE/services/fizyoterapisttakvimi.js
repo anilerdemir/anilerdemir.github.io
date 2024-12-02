@@ -4,7 +4,8 @@ const socialMedias = AECODE.Module.randomTag();
 AECODE.Core.insert("#eluidd54dd61b", AECODE.Core.create(socialMedias));
 AECODE.Module.socialMedia(socialMedias);
 
-AECODE.Core.update(`.latest_posts-readon .u-trans-all-2s .text-custom-child .kl-main-bgcolor`,{},`Devamını Oku`);
+const readMore = AECODE.Module.randomTag();
+AECODE.Core.insert(".latest_posts-post", AECODE.Core.create(readMore,{"class: .latest_posts-readon .u-trans-all-2s .text-custom-child .kl-main-bgcolor"},"Devamını Oku"),"pre")
 
 AECODE.Core.update(
   `${AECODE.anilerdemir[1]} style`,
@@ -30,3 +31,4 @@ AECODE.Core.update(
   `);
 
 AECODE.Core.delete(`.post-details`);
+AECODE.Core.delete(`.latest_posts-readon`);
