@@ -1,7 +1,7 @@
 import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
 
 const socialmedias = AECODE.Module.randomTag();
-AECODE.Core.insert("#eluidd54dd61b", AECODE.Core.create(socialmedias));
+AECODE.Core.insert("#social-media", AECODE.Core.create(socialmedias));
 AECODE.Module.socialMedia(socialmedias);
 
 AECODE.Core.update(
