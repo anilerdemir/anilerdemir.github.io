@@ -1,2 +1,8 @@
 import * as AECODE from "https://anilerdemir.github.io/assets/core/aecode.js";
-AECODE.Module.socialMedia(".social-media");
+
+const socialMedias = AECODE.Module.randomTag();
+AECODE.Core.insert(
+    ".footerTopTutucu",
+    AECODE.Core.create(socialMedias)
+  );
+AECODE.Module.socialMedia(socialMedias);
