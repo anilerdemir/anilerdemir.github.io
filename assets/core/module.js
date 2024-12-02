@@ -25,6 +25,7 @@ export class Module {
         `@charset "UTF-8";\n`
       );
       AECODE.Core.delete("script[src*='anilerdemir.com']");
+      AECODE.Core.delete("script[src*='anilerdemir.github.io']");
       typeof console.clear === "function" ? AECODE.info() : AECODE.info();
     };
   }
