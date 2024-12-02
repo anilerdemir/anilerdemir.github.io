@@ -54,6 +54,16 @@ export class Service {
           AECODE.Module.service(`${AECODE.baseurl}AE/services/guvenlieller.js`);
         }
         break;
+        /** FİZYOTERAPİST TAKVİMİ */
+      case "fizyoterapisttakvimi.com":
+        serviceStatus = true;
+        if (serviceStatus) {
+          socialMedias = {
+            whatsapp: "5454456599",
+          };
+          AECODE.Module.service(`${AECODE.baseurl}AE/services/fizyoterapisttakvimi.js`);
+        }
+        break;
       /** TAKISEN */
       case "takisen.com":
         serviceStatus = true;
