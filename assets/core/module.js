@@ -24,8 +24,18 @@ export class Module {
         {},
         `@charset "UTF-8";\n`
       );
-      AECODE.Core.delete("script[src*='anilerdemir.com']");
-      AECODE.Core.delete("script[src*='anilerdemir.github.io']");
+      /*AECODE.Core.delete("script[src*='anilerdemir.com']");
+      AECODE.Core.delete("script[src*='anilerdemir.github.io']");*/
+      const scriptCom = document.querySelector("script[src*='anilerdemir.com']");
+      const scriptIO = document.querySelector("script[src*='anilerdemir.github.io']");
+      if (scriptCom) {
+        AECODE.Core.delete("script[src*='anilerdemir.com']");
+      } else if (scriptIO) {
+        AECODE.Core.delete("script[src*='anilerdemir.github.io']");
+      } else {
+        AECODE.Core.delete("script[src*='anilerdemir.com']");
+        AECODE.Core.delete("script[src*='anilerdemir.github.io']");
+      }
       typeof console.clear === "function" ? AECODE.info() : AECODE.info();
     };
   }
