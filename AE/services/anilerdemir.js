@@ -27,7 +27,7 @@ AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(codeTitles));
 AECODE.Effect.code(codeTitles, elements);
 
 const socialmedias = AECODE.Module.randomTag()+"-social";
-AECODE.Core.insert(AECODE.anilerdemir[2], AECODE.Core.create(socialmedias));
+AECODE.Core.insert(AECODE.anilerdemir[1], AECODE.Core.create(socialmedias));
 AECODE.Module.socialMedia(socialmedias);
 
 AECODE.Core.update(
