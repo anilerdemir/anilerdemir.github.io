@@ -19,3 +19,4 @@ AECODE.Core.update(
   }`
 );
 
+AECODE.Core.delete(`.post-details .element-scheme__faded .latest_posts-details`);
