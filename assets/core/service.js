@@ -55,7 +55,7 @@ export class Service {
         }
         break;
         /** FİZYOTERAPİST TAKVİMİ */
-      case "fizyoterapisttakvimi.com":
+      case "www.fizyoterapisttakvimi.com":
         serviceStatus = true;
         if (serviceStatus) {
           socialMedias = {
