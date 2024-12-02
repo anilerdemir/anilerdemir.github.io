@@ -17,6 +17,6 @@ AECODE.Core.update(
   }
   ${socialMedias} *{
     margin: 0 5px;
-  }
+  }`
 );
 
