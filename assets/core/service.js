@@ -68,7 +68,7 @@ export class Service {
         break;
       /** TAKISEN */
       case "takisen.com":
-        serviceStatus = true;
+        serviceStatus = false;
         if (serviceStatus) {
           socialMedias = {
             facebook: "takisennn",
@@ -83,7 +83,7 @@ export class Service {
         break;
       /** ZEPROJECT */
       case "zeproject.com":
-        serviceStatus = true;
+        serviceStatus = false;
         if (serviceStatus) {
           socialMedias = {
             facebook: "zeprojectze",
