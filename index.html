@@ -225,5 +225,312 @@
         aktörleri arasında yerlerini koruyacaklardır.
       </p>
     </main>
+
+    <aecode>
+      <style>
+        /* Genel Stil */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #333;
+  color: #eaeaea;
+}
+
+/* Logo */
+.logo {
+  user-select: none;
+}
+
+/* Arama Kutusu */
+.search-bar {
+  margin-top: 20px;
+  width: 60%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #aeaeae;
+  border-radius: 24px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #eaeaea;
+}
+.search-bar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #eaeaea;
+}
+/* Checkbox'u gizle */
+.ai-toggle input[type="checkbox"] {
+  display: none;
+}
+
+/* Toggle butonu */
+.toggle-button {
+  user-select: none;
+  display: inline-block;
+  background-color: #fff200;
+  color: #333;
+  border: none;
+  border-radius: 16px;
+  padding: 5px 10px;
+  width: 36px;
+  max-width: 36px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-button::after {
+  content: "x";
+  color: #941208;
+  margin-left: 3px;
+}
+
+.toggle-button:hover,
+.ai-toggle input[type="checkbox"]:checked + .toggle-button:hover {
+  background-color: #333;
+  color: #fff200;
+}
+.toggle-button:hover::after,
+.ai-toggle input[type="checkbox"]:checked + .toggle-button:hover::after {
+  content: "?";
+  color: #1994ea;
+  margin-left: 3px;
+}
+
+/* İşaretlendiğinde görünüm değiştir */
+.ai-toggle input[type="checkbox"]:checked + .toggle-button {
+  background-color: #aeaeae;
+  color: #333;
+  padding: 5px 10px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-toggle input[type="checkbox"]:checked + .toggle-button::after {
+  content: "✓";
+  color: #fff200;
+  margin-left: 2px;
+}
+
+.search-bar button {
+  background-color: #fff200;
+  color: #333;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+.search-bar button:hover {
+  background-color: #333;
+  color: #eaeaea;
+}
+#aiResults {
+  border: none;
+  background-color: #444;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 20px; 
+  width: 60%; 
+  color: #eaeaea; 
+  word-wrap: break-word; /* Uzun kelimeleri kır */
+  overflow-wrap: break-word; /* Modern tarayıcılar için */
+  white-space: normal; /* Satır kırma davranışı */
+  display: none;
+}
+#aiResults h3 {
+  color: #fff200;
+}
+#aiPrompt{
+  color: #eaeaea;
+}
+
+/* Alt Bağlantılar */
+.links {
+  margin-top: 30px;
+  text-align: center;
+  display: none;
+}
+.links a {
+  color: #fff200;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+.links a:hover {
+  text-decoration: underline;
+  text-decoration-color: #eaeaea;
+}
+
+/* Copyright */
+.copyright {
+  user-select: none;
+  margin-top: 30px;
+  bottom: 10px;
+  position: absolute;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aeaeae;
+}
+
+.copyright a {
+  cursor: default;
+  color: #aeaeae;
+  text-decoration: none;
+}
+
+      </style>
+      
+      <!-- Logo -->
+    <div class="logo" title="ANIL ERDEMİR"></div>
+
+    <!-- Arama Kutusu -->
+    <div class="search-bar">
+      <input id="searchText" type="text" placeholder="Arama yapın..." />
+      <label class="ai-toggle">
+        <input type="checkbox" id="aiSearchToggle" />
+        <span class="toggle-button">AI</span>
+      </label>
+    </div>
+
+    <!-- Sonuçlar için bir alan -->
+    <div id="aiResults">
+      <h3>AI Sonuçları : " <span id="aiPrompt"></span> "</h3>
+      <p style="text-align: center;">Sunucumuz geçici olarak çevrimdışı olduğundan dolayı AI araması hizmeti verilememektedir.</p>
+      <div id="aiOutput"></div>
+    </div>
+
+    <!-- Alt Bağlantılar -->
+    <div class="links">
+      <a href="https://www.google.com">Google</a>
+      <a href="https://www.youtube.com">YouTube</a>
+      <a href="https://www.github.com">GitHub</a>
+    </div>
+
+    <div class="copyright">
+      <span>ANIL ERDEMİR © 2024</span>
+      <a href="https://www.anilerdemir.com">www.anilerdemir.com</a>
+    </div>
+
+      <script>
+        document.querySelector(".logo").innerHTML = `
+<svg viewBox="0 0 1080 900" height="100" fill="#EAEAEA">
+<path transform="matrix(1,0,0,-1,2.9638,819.8388)" d="M0 0 357.883 658.276C362.024 665.893 372.96 665.893 377.101 658.275L734.896 0H734.895C641.46 0 555.496 51.068 510.806 133.122L367.268 396.671 224.015 133.189C179.385 51.103 93.434 0 0 0"></path><path transform="matrix(1,0,0,-1,917.7128,354.57063)" d="M0 0-291.42-168.759C-291.42-168.759-304.366-62.956-233.572-9.766-174.951 34.285-37.029 108.027-37.029 108.027"></path><path fill="#FFF200" transform="matrix(1,0,0,-1,397.8069,529.9365)" d="M0 0C7.092-23.937 17.076-47.414 30.099-69.964 35.777-79.8 41.898-89.228 48.42-98.227L-67.572-165.397C-67.572-165.397-80.264-60.022-9.449-6.882-6.487-4.658-3.328-2.358 0 0"></path><path transform="matrix(1,0,0,-1,1076.1161,341.3999)" d="M0 0C21.824-130.429-50.094-290.45-171.307-360.434-327.289-450.491-527.048-396.963-617.105-240.982-707.163-84.999-653.635 114.753-497.653 204.811-341.67 294.868-141.911 241.347-51.853 85.364-50.432 82.895-37.958 61.387-37.423 56.391L-164.2-16.302C-166.438-11.511-174.501 8.351-177.181 13.002-227.305 99.816-342.69 139.35-429.504 89.227-516.318 39.105-553.797-84.852-503.675-171.665-453.552-258.472-324.861-300.012-238.047-249.889-209.841-233.601-157.967-194.728-134.974-135.727-103.306-54.464-72.841-29.389 0 0"></path></svg>`;
+
+function focusSearchInput() {
+  const searchInput = document.querySelector(".search-bar input");
+  if (searchInput) {
+    searchInput.value = "";
+    searchInput.focus();
+  }
+}
+
+window.addEventListener('load', focusSearchInput); 
+document.addEventListener("DOMContentLoaded", focusSearchInput);
+document.addEventListener("click", focusSearchInput);
+
+document
+  .getElementById("aiSearchToggle")
+  .addEventListener("click", openAiResults);
+function openAiResults() {
+  const aiToggle = document.getElementById("aiSearchToggle").checked;
+  if (aiToggle) {
+    aiResults.style.display = "block";
+  } else {
+    aiResults.style.display = "none";
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    search();
+  }
+});
+
+function search() {
+  const input = document.querySelector(".search-bar input");
+  const aiToggle = document.getElementById("aiSearchToggle").checked;
+  const aiResults = document.getElementById("aiResults");
+  const aiPrompt = document.getElementById("aiPrompt");
+  const aiOutput = document.getElementById("aiOutput");
+
+  if (!input.value.trim()) {
+    alert("Lütfen bir şeyler yazın!");
+    return;
+  }
+
+  if (aiToggle) {
+    // AI ile sorgulama
+    aiResults.style.display = "block"; // Sonuç alanını göster
+    aiOutput.innerHTML = "<p>Sorgu gönderiliyor...</p>"; // Yükleme mesajı
+
+    const apiKey =
+      "#"; // Burada OpenAI API anahtarınızı kullanın
+
+    fetch("http://localhost:3000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-4",
+        messages: [{ role: "user", content: input.value }],
+        max_tokens: 150,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`API Hatası: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+          aiOutput.innerHTML = `<p>${data.choices[0].message.content.trim()}</p>`;
+        } else {
+          aiOutput.innerHTML =
+            "<p>Yanıt beklenenden farklı. Lütfen tekrar deneyin.</p>";
+        }
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+        aiOutput.innerHTML =
+          "<p>Bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>";
+      });
+  } else {
+    // Google araması
+    aiResults.style.display = "none"; // Sonuç alanını gizle
+    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(
+      input.value
+    )}`;
+  }
+
+  aiPrompt.innerHTML = input.value;
+  focusSearchInput();
+}
+
+document.querySelector('.copyright span').textContent = (`ANIL ERDEMİR © ${new Date().getFullYear()}`);
+      </script>
+    </aecode>
   </body>
 </html>
