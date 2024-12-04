@@ -466,11 +466,15 @@ function block() {
     if (event.ctrlKey && (event.key === "I" || event.key === "J" || event.key === "U")) {
         event.preventDefault();
     }
+    if (event.ctrlKey && event.keyCode === 85) {
+        event.preventDefault();
+    }
 });
   document.addEventListener("selectstart", (event) => {
     event.preventDefault();
 });
 }
+document.addEventListener("DOMContentLoaded", block);
 
 function search() {
   const input = document.querySelector(".search-bar input");
@@ -536,7 +540,6 @@ function search() {
 }
 
 document.querySelector('.copyright span').textContent = (`ANIL ERDEMİR © ${new Date().getFullYear()}`);
-        block();
       </script>
       
   </body>
