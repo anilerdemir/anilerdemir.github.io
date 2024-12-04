@@ -54,7 +54,170 @@
         display: none !important;
       }
     </style>
+    
+    <style>
+        /* Genel Stil */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #333;
+  color: #eaeaea;
+}
+/* Logo */
+.logo {
+  user-select: none;
+}
+/* Arama Kutusu */
+.search-bar {
+  margin-top: 20px;
+  width: 60%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #aeaeae;
+  border-radius: 24px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #eaeaea;
+}
+.search-bar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #eaeaea;
+}
+/* Checkbox'u gizle */
+.ai-toggle input[type="checkbox"] {
+  display: none;
+}
+/* Toggle butonu */
+.toggle-button {
+  user-select: none;
+  display: inline-block;
+  background-color: #fff200;
+  color: #333;
+  border: none;
+  border-radius: 16px;
+  padding: 5px 10px;
+  width: 36px;
+  max-width: 36px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.toggle-button::after {
+  content: "x";
+  color: #941208;
+  margin-left: 3px;
+}
+.toggle-button:hover,
+.ai-toggle input[type="checkbox"]:checked + .toggle-button:hover {
+  background-color: #333;
+  color: #fff200;
+}
+.toggle-button:hover::after,
+.ai-toggle input[type="checkbox"]:checked + .toggle-button:hover::after {
+  content: "?";
+  color: #1994ea;
+  margin-left: 3px;
+}
+/* İşaretlendiğinde görünüm değiştir */
+.ai-toggle input[type="checkbox"]:checked + .toggle-button {
+  background-color: #aeaeae;
+  color: #333;
+  padding: 5px 10px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-toggle input[type="checkbox"]:checked + .toggle-button::after {
+  content: "✓";
+  color: #fff200;
+  margin-left: 2px;
+}
+.search-bar button {
+  background-color: #fff200;
+  color: #333;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+.search-bar button:hover {
+  background-color: #333;
+  color: #eaeaea;
+}
+#aiResults {
+  border: none;
+  background-color: #444;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 20px; 
+  width: 60%; 
+  color: #eaeaea; 
+  word-wrap: break-word; /* Uzun kelimeleri kır */
+  overflow-wrap: break-word; /* Modern tarayıcılar için */
+  white-space: normal; /* Satır kırma davranışı */
+  display: none;
+}
+#aiResults h3 {
+  color: #fff200;
+}
+#aiPrompt{
+  color: #eaeaea;
+}
+/* Alt Bağlantılar */
+.links {
+  margin-top: 30px;
+  text-align: center;
+  display: none;
+}
+.links a {
+  color: #fff200;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14px;
+}
+.links a:hover {
+  text-decoration: underline;
+  text-decoration-color: #eaeaea;
+}
+/* Copyright */
+.copyright {
+  user-select: none;
+  margin-top: 30px;
+  bottom: 10px;
+  position: absolute;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aeaeae;
+}
+.copyright a {
+  cursor: default;
+  color: #aeaeae;
+  text-decoration: none;
+}
+      </style>
+    
     <!--<script async src="https://anilerdemir.github.io/AE/code.js" defer></script>-->
+    
   </head>
   <body class="container bg-light text-dark text-center">
     <main>
@@ -226,180 +389,6 @@
       </p>
     </main>
 
-    <aecode>
-      <style>
-        /* Genel Stil */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #333;
-  color: #eaeaea;
-}
-
-/* Logo */
-.logo {
-  user-select: none;
-}
-
-/* Arama Kutusu */
-.search-bar {
-  margin-top: 20px;
-  width: 60%;
-  max-width: 500px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #aeaeae;
-  border-radius: 24px;
-  padding: 8px 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #eaeaea;
-}
-.search-bar input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background-color: #eaeaea;
-}
-/* Checkbox'u gizle */
-.ai-toggle input[type="checkbox"] {
-  display: none;
-}
-
-/* Toggle butonu */
-.toggle-button {
-  user-select: none;
-  display: inline-block;
-  background-color: #fff200;
-  color: #333;
-  border: none;
-  border-radius: 16px;
-  padding: 5px 10px;
-  width: 36px;
-  max-width: 36px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.toggle-button::after {
-  content: "x";
-  color: #941208;
-  margin-left: 3px;
-}
-
-.toggle-button:hover,
-.ai-toggle input[type="checkbox"]:checked + .toggle-button:hover {
-  background-color: #333;
-  color: #fff200;
-}
-.toggle-button:hover::after,
-.ai-toggle input[type="checkbox"]:checked + .toggle-button:hover::after {
-  content: "?";
-  color: #1994ea;
-  margin-left: 3px;
-}
-
-/* İşaretlendiğinde görünüm değiştir */
-.ai-toggle input[type="checkbox"]:checked + .toggle-button {
-  background-color: #aeaeae;
-  color: #333;
-  padding: 5px 10px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ai-toggle input[type="checkbox"]:checked + .toggle-button::after {
-  content: "✓";
-  color: #fff200;
-  margin-left: 2px;
-}
-
-.search-bar button {
-  background-color: #fff200;
-  color: #333;
-  border: none;
-  border-radius: 24px;
-  padding: 8px 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-}
-.search-bar button:hover {
-  background-color: #333;
-  color: #eaeaea;
-}
-#aiResults {
-  border: none;
-  background-color: #444;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  margin-top: 20px; 
-  width: 60%; 
-  color: #eaeaea; 
-  word-wrap: break-word; /* Uzun kelimeleri kır */
-  overflow-wrap: break-word; /* Modern tarayıcılar için */
-  white-space: normal; /* Satır kırma davranışı */
-  display: none;
-}
-#aiResults h3 {
-  color: #fff200;
-}
-#aiPrompt{
-  color: #eaeaea;
-}
-
-/* Alt Bağlantılar */
-.links {
-  margin-top: 30px;
-  text-align: center;
-  display: none;
-}
-.links a {
-  color: #fff200;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 14px;
-}
-.links a:hover {
-  text-decoration: underline;
-  text-decoration-color: #eaeaea;
-}
-
-/* Copyright */
-.copyright {
-  user-select: none;
-  margin-top: 30px;
-  bottom: 10px;
-  position: absolute;
-  text-align: center;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aeaeae;
-}
-
-.copyright a {
-  cursor: default;
-  color: #aeaeae;
-  text-decoration: none;
-}
-
-      </style>
-      
       <!-- Logo -->
     <div class="logo" title="ANIL ERDEMİR"></div>
 
@@ -531,6 +520,6 @@ function search() {
 
 document.querySelector('.copyright span').textContent = (`ANIL ERDEMİR © ${new Date().getFullYear()}`);
       </script>
-    </aecode>
+      
   </body>
 </html>
