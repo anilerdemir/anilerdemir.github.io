@@ -403,8 +403,7 @@ body {
 
     <!-- Sonuçlar için bir alan -->
     <div id="aiResults">
-      <h3>AI Sonuçları : " <span id="aiPrompt"></span> "</h3>
-      <p style="text-align: center;">Sunucumuz geçici olarak çevrimdışı olduğundan dolayı AI araması hizmeti verilememektedir.</p>
+      <h3>AI Sonuçları : " <span id="aiPrompt"></span> "</h3>      
       <div id="aiOutput"></div>
     </div>
 
@@ -497,42 +496,10 @@ function search() {
   if (aiToggle) {
     // AI ile sorgulama
     aiResults.style.display = "block"; // Sonuç alanını göster
-    aiOutput.innerHTML = "<p>Sorgu gönderiliyor...</p>"; // Yükleme mesajı
-
-    const apiKey =
-      "#"; // Burada OpenAI API anahtarınızı kullanın
-
-    fetch("http://localhost:3000/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4",
-        messages: [{ role: "user", content: input.value }],
-        max_tokens: 150,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`API Hatası: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.choices && data.choices[0] && data.choices[0].message) {
-          aiOutput.innerHTML = `<p>${data.choices[0].message.content.trim()}</p>`;
-        } else {
-          aiOutput.innerHTML =
-            "<p>Yanıt beklenenden farklı. Lütfen tekrar deneyin.</p>";
-        }
-      })
-      .catch((error) => {
-        console.error("Hata:", error);
-        aiOutput.innerHTML =
-          "<p>Bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>";
-      });
+    aiOutput.innerHTML = "<p>Sorgu gönderiliyor...</p>";
+    window.location.href = `https://chatgpt.com/?q=${encodeURIComponent(
+      input.value
+    )}&hints=search&ref=ext`;
   } else {
     // Google araması
     aiResults.style.display = "none"; // Sonuç alanını gizle
