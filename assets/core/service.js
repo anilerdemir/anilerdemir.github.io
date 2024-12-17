@@ -59,6 +59,8 @@ export class Service {
         serviceStatus = true;
         if (serviceStatus) {
           socialMedias = {
+            facebook: "people/Fizyoterapist-Can-Doğan-Özkan/61570213502956",
+            instagram: "fzt.candogan",
             whatsapp: "5454456599",
             phone: "5454456599",
             email: "info@fizyoterapisttakvimi.com",
