@@ -63,7 +63,7 @@ export class Service {
             instagram: "fzt.candogan",
             whatsapp: "5454456599",
             phone: "5454456599",
-            email: "info@fizyoterapisttakvimi.com",
+            email: "candogan.ozkan@hotmail.com",
           };
           AECODE.Module.service(`${AECODE.baseurl}AE/services/fizyoterapisttakvimi.js`);
         }
