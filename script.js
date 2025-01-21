@@ -283,12 +283,10 @@ Object.assign(monthElement.style, {
   color: "#1994ea25",
   letterSpacing: "-0.1em",
   zIndex: "-1",
-  width: "100%",
-  boxSizing: "border-box",
 });
 function localTime() {
   const now = new Date();
-  const timeline = now
+  document.title = `AECODE - ${now
     .toLocaleString("tr-TR", {
       year: "numeric",
       month: "2-digit",
@@ -299,12 +297,28 @@ function localTime() {
       weekday: "long",
       timeZoneName: "long",
     })
+    .toLocaleUpperCase()}`;
+  gmtElement.textContent = now
+    .toLocaleString("tr-TR", { timeZoneName: "long" })
+    .toLocaleUpperCase()
+    .slice(-10);
+  clockElement.textContent = now
+    .toLocaleString("tr-TR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })
     .toLocaleUpperCase();
-  document.title = `AECODE - ${timeline}`;
-  gmtElement.textContent = timeline.slice(-9);
-  clockElement.textContent = timeline.slice(16, 24);
-  historyElement.textContent = timeline.slice(0, 10);
-  weekdayElement.textContent = timeline.slice(10, 16);
+  historyElement.textContent = now
+    .toLocaleString("tr-TR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .toLocaleUpperCase();
+  weekdayElement.textContent = now
+    .toLocaleString("tr-TR", { weekday: "long" })
+    .toLocaleUpperCase();
   monthElement.textContent = now
     .toLocaleString("tr-TR", {
       month: "long",
