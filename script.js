@@ -278,11 +278,13 @@ Object.assign(monthElement.style, {
   flexDirection: "column",
   position: "absolute",
   inset: "0",
-  fontSize: "77.664pt",
+  fontSize: "58.248pt",
   fontWeight: "900",
   color: "#1994ea25",
   letterSpacing: "-0.1em",
   zIndex: "-1",
+  width: "100%",
+  boxSizing: "border-box",
 });
 function localTime() {
   const now = new Date();
