@@ -574,7 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
   [logo, timeDate, search, worldContainer, copyright].forEach((element) => {
     document.body.appendChild(element);
   });
-  block();
+  //block();
   searchFocus();
   cursor(aeLogo);
   worldTime();
