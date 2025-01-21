@@ -1,6 +1,21 @@
 const aeLogo = `<svg viewBox="0 0 1080 900" height="100" fill="#EAEAEA">
 <path transform="matrix(1,0,0,-1,2.9638,819.8388)" d="M0 0 357.883 658.276C362.024 665.893 372.96 665.893 377.101 658.275L734.896 0H734.895C641.46 0 555.496 51.068 510.806 133.122L367.268 396.671 224.015 133.189C179.385 51.103 93.434 0 0 0"></path><path transform="matrix(1,0,0,-1,917.7128,354.57063)" d="M0 0-291.42-168.759C-291.42-168.759-304.366-62.956-233.572-9.766-174.951 34.285-37.029 108.027-37.029 108.027"></path><path fill="#FFF200" transform="matrix(1,0,0,-1,397.8069,529.9365)" d="M0 0C7.092-23.937 17.076-47.414 30.099-69.964 35.777-79.8 41.898-89.228 48.42-98.227L-67.572-165.397C-67.572-165.397-80.264-60.022-9.449-6.882-6.487-4.658-3.328-2.358 0 0"></path><path transform="matrix(1,0,0,-1,1076.1161,341.3999)" d="M0 0C21.824-130.429-50.094-290.45-171.307-360.434-327.289-450.491-527.048-396.963-617.105-240.982-707.163-84.999-653.635 114.753-497.653 204.811-341.67 294.868-141.911 241.347-51.853 85.364-50.432 82.895-37.958 61.387-37.423 56.391L-164.2-16.302C-166.438-11.511-174.501 8.351-177.181 13.002-227.305 99.816-342.69 139.35-429.504 89.227-516.318 39.105-553.797-84.852-503.675-171.665-453.552-258.472-324.861-300.012-238.047-249.889-209.841-233.601-157.967-194.728-134.974-135.727-103.306-54.464-72.841-29.389 0 0"></path></svg>`;
 
+// Cache
+function clearAll() {
+  document.cookie.split(";").forEach((cookie) => {
+    const [name] = cookie.split("=");
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  });
+  if ("caches" in window) {
+    caches.keys().then((cacheNames) => {
+      cacheNames.forEach((cacheName) => {
+        caches.delete(cacheName);
+      });
+    }).catch(() => {}); 
+  }
+}
+
 // Events
 function eventsClear() {
   [
@@ -574,15 +589,17 @@ document.addEventListener("DOMContentLoaded", () => {
   [logo, timeDate, search, worldContainer, copyright].forEach((element) => {
     document.body.appendChild(element);
   });
-  //block();
+  block();
   searchFocus();
   cursor(aeLogo);
   worldTime();
   localTime();
   eventsClear();
+  clearAll();
   setInterval(() => {
     localTime();
     eventsClear();
+    clearAll();
   }, 1000);
 });
 
