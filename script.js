@@ -8,11 +8,14 @@ function clearAll() {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   });
   if ("caches" in window) {
-    caches.keys().then((cacheNames) => {
-      cacheNames.forEach((cacheName) => {
-        caches.delete(cacheName);
-      });
-    }).catch(() => {}); 
+    caches
+      .keys()
+      .then((cacheNames) => {
+        cacheNames.forEach((cacheName) => {
+          caches.delete(cacheName);
+        });
+      })
+      .catch(() => {});
   }
 }
 
@@ -43,8 +46,7 @@ function eventsClear() {
 
 // Block
 function block() {
-  history.replaceState(null, null, "AECODE");
-  const allowedKeys = /^[a-zA-Z0-9\s]$/;
+  const allowedKeys = /^[a-z0-9\s]$/;
   document.addEventListener("keydown", (e) => {
     const isBlocked =
       e.ctrlKey ||
@@ -149,6 +151,7 @@ function aeGolden() {
       height: "100%",
       width: "1px",
       backgroundColor: "green",
+      boxSizing: "border-box",
     });
     createLine({
       top: `${h / 2}px`,
@@ -156,6 +159,25 @@ function aeGolden() {
       width: "100%",
       height: "1px",
       backgroundColor: "green",
+      boxSizing: "border-box",
+    });
+    createLine({
+      top: `${h / 2}px`,
+      left: 0,
+      width: "100%",
+      height: "1px",
+      transform: "rotate(-45deg)",
+      backgroundColor: "green",
+      boxSizing: "border-box",
+    });
+    createLine({
+      top: `${h / 2}px`,
+      left: 0,
+      width: "100%",
+      height: "1px",
+      transform: "rotate(45deg)",
+      backgroundColor: "green",
+      boxSizing: "border-box",
     });
     // Altın Oran Çizgiler (Kırmızı ve Mavi)
     createLine({
@@ -164,6 +186,7 @@ function aeGolden() {
       height: "100%",
       width: "1px",
       backgroundColor: "red",
+      boxSizing: "border-box",
     });
     createLine({
       top: `${h / phi}px`,
@@ -171,6 +194,7 @@ function aeGolden() {
       width: "100%",
       height: "1px",
       backgroundColor: "red",
+      boxSizing: "border-box",
     });
     createLine({
       left: `${w - w / phi}px`,
@@ -178,6 +202,7 @@ function aeGolden() {
       height: "100%",
       width: "1px",
       backgroundColor: "blue",
+      boxSizing: "border-box",
     });
     createLine({
       top: `${h - h / phi}px`,
@@ -185,25 +210,48 @@ function aeGolden() {
       width: "100%",
       height: "1px",
       backgroundColor: "blue",
+      boxSizing: "border-box",
     });
-    // Çapraz Çizgiler (Mor)
+    // Çapraz Çizgiler (Turuncu)
     createLine({
       width: `${diagLength}px`,
       height: "1px",
-      backgroundColor: "purple",
+      backgroundColor: "orange",
       transform: "rotate(45deg)",
       transformOrigin: "top left",
       top: 0,
       left: 0,
+      boxSizing: "border-box",
     });
     createLine({
       width: `${diagLength}px`,
       height: "1px",
-      backgroundColor: "purple",
+      backgroundColor: "orange",
       transform: "rotate(-45deg)",
       transformOrigin: "top right",
       top: 0,
       right: 0,
+      boxSizing: "border-box",
+    });
+    createLine({
+      width: `${diagLength}px`,
+      height: "1px",
+      backgroundColor: "orange",
+      transform: "rotate(-45deg)",
+      transformOrigin: "top left",
+      bottom: 0,
+      left: 0,
+      boxSizing: "border-box",
+    });
+    createLine({
+      width: `${diagLength}px`,
+      height: "1px",
+      backgroundColor: "orange",
+      transform: "rotate(45deg)",
+      transformOrigin: "top right",
+      bottom: 0,
+      right: 0,
+      boxSizing: "border-box",
     });
     // Kenar Çerçevesi (Pembe)
     createElement("div", {
@@ -219,6 +267,18 @@ function aeGolden() {
     // Altın Oran Kutuları (Sarı)
     const boxWidth = w / phi,
       boxHeight = h / phi;
+    createElement("goldcross", {
+      position: "absolute",
+      left: `${(w - boxHeight) / 2}px`,
+      top: `${(h - boxHeight) / 2}px`,
+      width: `${boxHeight}px`,
+      height: `${boxHeight}px`,
+      border: "1px solid aqua",
+      backgroundColor: "transparent",
+      transform: "rotate(45deg)",
+      boxSizing: "border-box",
+      borderRadius: `${25 / phi}%`,
+    });
     createElement("goldbox", {
       position: "absolute",
       left: `${(w - boxWidth) / 2}px`,
@@ -227,6 +287,7 @@ function aeGolden() {
       height: `${boxHeight}px`,
       border: "1px solid yellow",
       backgroundColor: "transparent",
+      boxSizing: "border-box",
     });
     createElement("goldcontainer", {
       position: "absolute",
@@ -252,6 +313,39 @@ document.head.appendChild(theme);
 // Logo
 const logo = document.createElement("logo");
 logo.innerHTML = aeLogo;
+
+// Beep
+function beep() {
+  const now = new Date();
+  const host = window.location.href;
+  if (
+    now.getHours() === 23 &&
+    now.getMinutes() === 59 &&
+    now.getSeconds() === 59
+  ) {
+    history.replaceState(null, null, "/");
+    window.location.href = host;
+    history.replaceState(null, null, "/");
+  }
+  if (now.getSeconds() === 0 && now.getMinutes() === 0) {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(1994, audioCtx.currentTime);
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.25);
+    oscillator.onended = () => {
+      audioCtx.close();
+    };
+  }
+  if (now.getSeconds() === 0) {
+    worldTime();
+  }
+}
 
 // Time
 const timeDate = document.createElement("time");
@@ -339,24 +433,6 @@ function localTime() {
       month: "long",
     })
     .toLocaleUpperCase();
-  if (now.getSeconds() === 0 && now.getMinutes() === 0) {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(1994, audioCtx.currentTime);
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.25);
-    oscillator.onended = () => {
-      audioCtx.close();
-    };
-  }
-  if (now.getSeconds() === 0) {
-    worldTime();
-  }
 }
 timeDate.appendChild(gmtElement);
 timeDate.appendChild(clockElement);
@@ -459,11 +535,6 @@ aiToggleLabel.addEventListener("click", () => {
     aiCheckbox.checked = false;
   }
 });
-searchInput.addEventListener("input", () => {
-  const value = searchInput.value;
-  searchInput.value =
-    value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-});
 Object.assign(search.style, {
   display: "flex",
   alignItems: "center",
@@ -484,6 +555,7 @@ Object.assign(searchInput.style, {
   color: "#aeaeae",
   backgroundColor: "transparent",
   boxSizing: "border-box",
+  textTransform: "lowercase",
 });
 Object.assign(aiToggleLabel.style, {
   cursor: "none",
@@ -547,9 +619,6 @@ Object.assign(copyright.style, {
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "column",
-  position: "absolute",
-  bottom: "0.809rem",
-  margin: "1.618em 0 0 0",
   fontSize: "6.472pt",
   color: "#aeaeae",
   boxSizing: "border-box",
@@ -594,9 +663,8 @@ document.addEventListener("DOMContentLoaded", () => {
   cursor(aeLogo);
   worldTime();
   localTime();
-  eventsClear();
-  clearAll();
   setInterval(() => {
+    beep();
     localTime();
     eventsClear();
     clearAll();
