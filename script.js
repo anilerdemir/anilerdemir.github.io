@@ -46,7 +46,7 @@ function eventsClear() {
 
 // Block
 function block() {
-  const allowedKeys = /^[a-z0-9\s]$/;
+  const allowedKeys = /^[a-z0-9çğıöşü\s]$/;
   document.addEventListener("keydown", (e) => {
     const isBlocked =
       e.ctrlKey ||
