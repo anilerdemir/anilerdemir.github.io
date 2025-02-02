@@ -124,6 +124,40 @@ function searchFocus() {
   if (searchInput) {
     searchInput.value = "";
     searchInput.focus();
+    searchInput.click();
+  }
+}
+
+// Beep
+function beep() {
+  const now = new Date();
+  const host = window.location.href;
+  if (
+    now.getHours() === 23 &&
+    now.getMinutes() === 59 &&
+    now.getSeconds() === 59
+  ) {
+    history.replaceState(null, null, "/");
+    window.location.href = host;
+    history.replaceState(null, null, "/");
+  }
+  if (now.getSeconds() === 0 && now.getMinutes() === 0) {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(1994, audioCtx.currentTime);
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.25);
+    oscillator.onended = () => {
+      audioCtx.close();
+    };
+  }
+  if (now.getSeconds() === 0) {
+    worldTime();
   }
 }
 
@@ -314,39 +348,6 @@ document.head.appendChild(theme);
 const logo = document.createElement("logo");
 logo.innerHTML = aeLogo;
 
-// Beep
-function beep() {
-  const now = new Date();
-  const host = window.location.href;
-  if (
-    now.getHours() === 23 &&
-    now.getMinutes() === 59 &&
-    now.getSeconds() === 59
-  ) {
-    history.replaceState(null, null, "/");
-    window.location.href = host;
-    history.replaceState(null, null, "/");
-  }
-  if (now.getSeconds() === 0 && now.getMinutes() === 0) {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(1994, audioCtx.currentTime);
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.25);
-    oscillator.onended = () => {
-      audioCtx.close();
-    };
-  }
-  if (now.getSeconds() === 0) {
-    worldTime();
-  }
-}
-
 // Time
 const timeDate = document.createElement("time");
 const gmtElement = document.createElement("gmt");
@@ -500,40 +501,40 @@ function worldTime() {
 const search = document.createElement("search");
 const searchInput = document.createElement("input");
 const aiToggleLabel = document.createElement("div");
-const aiCheckbox = document.createElement("input");
+const aiDropdown = document.createElement("div");
 const toggleButton = document.createElement("span");
-let currentState = "x";
 searchInput.type = "text";
-aiCheckbox.type = "checkbox";
 searchInput.placeholder = "Arama yapın...";
-aiToggleLabel.textContent = "AI";
-toggleButton.textContent = currentState;
-aiCheckbox.style.display = "none";
-aiToggleLabel.addEventListener("mouseover", () => {
-  toggleButton.style.color = "#1994AE";
-  toggleButton.textContent = "?";
-});
-aiToggleLabel.addEventListener("mouseout", () => {
-  if (currentState === "x") {
-    toggleButton.style.color = "#941208";
-    toggleButton.textContent = currentState;
-  } else if (currentState === "✓") {
-    toggleButton.style.color = "#fff200";
-    toggleButton.textContent = currentState;
-  }
-});
-aiToggleLabel.addEventListener("click", () => {
-  if (currentState === "x") {
-    currentState = "✓";
-    toggleButton.style.color = "#fff200";
-    toggleButton.textContent = currentState;
-    aiCheckbox.checked = true;
-  } else if (currentState === "✓") {
-    currentState = "x";
-    toggleButton.style.color = "#941208";
-    toggleButton.textContent = currentState;
-    aiCheckbox.checked = false;
-  }
+toggleButton.textContent = "▼";
+const searchEngines = {
+  Google: "https://www.google.com/search?q=",
+  ChatGPT: "https://chatgpt.com/?q=",
+  Gemini: "https://gemini.google.com/app?q=",
+  CoPilot: "https://www.bing.com/search?q=",
+  DeepSeek: "https://www.deepseek.com/search?q="
+};
+let selectedEngine = Object.keys(searchEngines)[0];
+const selectedEngineText = document.createElement("span");
+selectedEngineText.textContent = selectedEngine;
+Object.keys(searchEngines).forEach((engine) => {
+  const option = document.createElement("div");
+  option.textContent = engine;
+  option.dataset.value = searchEngines[engine];
+  Object.assign(option.style, {
+    padding: "5px 10px",
+    cursor: "pointer",
+    color: "#aeaeae",
+    backgroundColor: "#333",
+    borderBottom: "1px solid #444",
+  });
+  option.addEventListener("click", () => {
+    selectedEngine = engine;
+    selectedEngineText.textContent = engine;
+    setTimeout(() => {
+      aiDropdown.style.display = "none";
+    }, 150);
+  });
+  aiDropdown.appendChild(option);
 });
 Object.assign(search.style, {
   display: "flex",
@@ -549,7 +550,6 @@ Object.assign(search.style, {
 });
 Object.assign(searchInput.style, {
   width: "100%",
-  cursor: "none",
   border: "none",
   outline: "none",
   color: "#aeaeae",
@@ -558,56 +558,58 @@ Object.assign(searchInput.style, {
   textTransform: "lowercase",
 });
 Object.assign(aiToggleLabel.style, {
-  cursor: "none",
+  cursor: "pointer",
   width: "6.472rem",
   height: "1.618rem",
   display: "flex",
-  textAlign: "center",
   alignItems: "center",
   justifyContent: "center",
-  flexDirection: "row",
   color: "#aeaeae",
   backgroundColor: "#333",
   fontWeight: "bold",
   padding: "0px 10px",
   borderRadius: "1.618rem",
   boxSizing: "border-box",
+  position: "relative",
 });
 Object.assign(toggleButton.style, {
-  cursor: "none",
-  width: "0.404rem",
-  height: "1.618rem",
-  display: "flex",
-  textAlign: "center",
-  alignItems: "center",
-  justifyContent: "center",
-  flexDirection: "column",
-  color: "#941208",
+  marginLeft: "5px",
   fontWeight: "bold",
-  padding: "0px 10px",
-  borderRadius: "1.618rem",
-  boxSizing: "border-box",
+  color: "#aeaeae",
+});
+Object.assign(aiDropdown.style, {
+  position: "absolute",
+  top: "100%",
+  left: "0",
+  width: "100%",
+  backgroundColor: "#333",
+  color: "#aeaeae",
+  border: "1px solid #444",
+  borderRadius: "0.5rem",
+  display: "none",
+  zIndex: "1000",
+  cursor: "pointer",
+});
+aiToggleLabel.addEventListener("click", (e) => {
+  e.stopPropagation();
+  aiDropdown.style.display = aiDropdown.style.display === "block" ? "none" : "block";
+});
+document.addEventListener("click", (e) => {
+  if (!aiToggleLabel.contains(e.target)) {
+    aiDropdown.style.display = "none";
+  }
 });
 function searchBox() {
   if (!searchInput.value.trim()) {
     alert("Lütfen bir şeyler yazın!");
     return;
   }
-  if (aiCheckbox.checked) {
-    // AI ile sorgulama
-    window.location.href = `https://chatgpt.com/?q=${encodeURIComponent(
-      searchInput.value
-    )}&hints=search&ref=ext`;
-  } else {
-    // Google araması
-    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(
-      searchInput.value
-    )}`;
-  }
+  window.location.href = `${searchEngines[selectedEngine]}${encodeURIComponent(searchInput.value)}`;
   searchFocus();
 }
-aiToggleLabel.appendChild(aiCheckbox);
+aiToggleLabel.appendChild(selectedEngineText);
 aiToggleLabel.appendChild(toggleButton);
+aiToggleLabel.appendChild(aiDropdown);
 search.appendChild(searchInput);
 search.appendChild(aiToggleLabel);
 
