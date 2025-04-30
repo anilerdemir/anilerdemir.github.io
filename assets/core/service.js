@@ -45,7 +45,7 @@ export class Service {
         break;
       /** GUVENLI ELLER */
       case "guvenlieller.com":
-        serviceStatus = true;
+        serviceStatus = false;
         if (serviceStatus) {
           socialMedias = {
             instagram: "guvenli.eller",
