@@ -175,3 +175,73 @@ ${evdeSaglikBalonu}:hover {
 ].map((item) => {
   AECODE.Core.delete(item);
 });
+
+
+/* HİZMET DURDURULDU! */
+document.body.innerHTML = '';
+const style = document.createElement('style');
+style.textContent = `
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #941208 1%, #080808 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  .container {
+    background: #08080835;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 90%;
+  }
+  .container svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: -10px;
+  }
+  .container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff200;
+    text-transform: uppercase;
+  }
+  .container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  .small-text {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #aeaeae;
+  }
+`;
+document.head.appendChild(style);
+const container = document.createElement('div');
+container.className = 'container';
+const warningIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+warningIcon.setAttribute('viewBox', '0 0 24 24');
+warningIcon.innerHTML = `
+  <path fill="#fff200" d="M1,21H23L12,2" />
+  <rect x="11" y="9" width="2" height="5" fill="#080808"/>
+  <rect x="11" y="16" width="2" height="2" fill="#080808"/>
+`;
+const title = document.createElement('h1');
+title.textContent = 'Hizmet Durduruldu';
+const description = document.createElement('p');
+description.textContent = 'Bu web sitesinin yenileme ücretleri ödenmediği için hizmet durdurulmuştur. Lütfen site sahibi ile iletişime geçiniz.';
+const smallText = document.createElement('div');
+smallText.className = 'small-text';
+smallText.textContent = '© 2025 Tüm Hakları Saklıdır';
+container.appendChild(warningIcon);
+container.appendChild(title);
+container.appendChild(description);
+container.appendChild(smallText);
+document.body.appendChild(container);
+/* HİZMET DURDURULDU! */
