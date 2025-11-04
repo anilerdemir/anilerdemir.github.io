@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Test</title>
+    <style>
+        body {
+            inset: 0%;
+            margin: 0%;
+            padding: 0%;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            position: fixed;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            background: url('/assets/img/screen-test.png') no-repeat top center;
+            background-size: cover;
+            background-color: gray;
+            overflow: hidden;
+            cursor: default;
+            user-select: none;
+        }
+
+        body.fullscreen {
+            cursor: none;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                document.body.classList.add('fullscreen');
+            } else {
+                document.body.classList.remove('fullscreen');
+            }
+        });
+
+        document.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
