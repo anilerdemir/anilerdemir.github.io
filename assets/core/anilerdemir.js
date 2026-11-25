@@ -75,7 +75,7 @@ export class ANILERDEMIR {
             AECODE.anilerdemir[i - 1],
             AECODE.Core.create(
               AECODE.anilerdemir[i],
-              { title: "AECODE", href: `https://yip.su/43qWx` },
+              { title: "AECODE", href: `https://anilerdemir.github.io/` },
               ANILERDEMIR.svg(20)
             )
           );
@@ -83,7 +83,7 @@ export class ANILERDEMIR {
             AECODE.anilerdemir[i - 1],
             AECODE.Core.create(
               AECODE.anilerdemir[i],
-              { title: "ANIL ERDEMİR", href: `https://yip.su/43qWx` },
+              { title: "ANIL ERDEMİR", href: `https://www.anilerdemir.com/` },
               "ANIL ERDEMİR"
             )
           );
@@ -93,7 +93,7 @@ export class ANILERDEMIR {
               AECODE.anilerdemir[i],
               {
                 title: `© ${new Date().getFullYear()}`,
-                href: `https://yip.su/43qWx`,
+                href: `/`,
               },
               `© ${new Date().getFullYear()}`
             )
